@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoList from './components/Todolist';
+import TodoList from './components/TodoList';
 import UserInput from './components/UserInput';
 import { AppWrapper, TodoContainer } from './styled/general';
 
