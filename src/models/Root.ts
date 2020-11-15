@@ -1,27 +1,7 @@
 import { useContext, createContext } from 'react';
-import { types, Instance, onSnapshot } from 'mobx-state-tree';
-
-export const UserInput = types
-  .model({
-    value: types.string,
-  })
-  .actions((self) => ({
-    handleChange(text: string) {
-      self.value = text;
-    },
-  }));
-
-export const Todo = types
-  .model({
-    id: types.identifierNumber,
-    text: types.string,
-    isComplete: types.optional(types.boolean, false),
-  })
-  .actions((self) => ({
-    toggleStatus() {
-      self.isComplete = !self.isComplete;
-    },
-  }));
+import { types, Instance } from 'mobx-state-tree';
+import UserInput from './UserInput';
+import Todo from './Todo';
 
 const RootModel = types
   .model({
@@ -40,24 +20,19 @@ const RootModel = types
       return self.todos.filter(
         ({ text }) => text.toLowerCase().indexOf(comparedSubstring) !== -1
       );
-    }
+    },
   }));
 
 const initialState = RootModel.create({
   userInput: {
     value: '',
   },
-  todos: [{ id: 0, text: 'nice ass', isComplete: false }],
+  todos: [{ id: 0, text: 'first todo', isComplete: false }],
 });
 
 export const rootStore = initialState;
-
-onSnapshot(rootStore, (snapshot) => console.dir(snapshot));
-
 export type RootInstance = Instance<typeof RootModel>;
-
 const RootStoreContext = createContext<null | RootInstance>(null);
-
 export const Provider = RootStoreContext.Provider;
 
 export const useStore = () => {

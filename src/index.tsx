@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import { Provider, rootStore } from './models/Root';
+import App from './App';
 import { GlobalStyle } from './styled/general';
 
 ReactDOM.render(

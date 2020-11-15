@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../models/Root';
 import TodoItem from './TodoItem';
-import { StyledTodoList } from '../styled/general';
+import { StyledTodoList } from '../styled/todo';
 
 const TodoList: React.FC = observer(() => {
   const { filteredTodos } = useStore();
